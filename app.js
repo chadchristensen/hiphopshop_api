@@ -1,12 +1,9 @@
 const express = require('express');
 const createError = require('http-errors');
-const { sequelize } = require('./db');
 const { postRouter } = require('./controllers/postController.js');
 
 const app = express();
 app.disable('x-powered-by');
-
-const PORT = process.env.PORT || '3005';
 
 app.use(express.json());
 app.use('/api/v1/posts', postRouter);
@@ -33,14 +30,4 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-(async function() {
-  try {
-    await sequelize.sync({ force: true });
-
-    app.listen(PORT, () => {
-      console.log(`HipHopShop API is listening on PORT ${PORT}`);
-    });
-  } catch (err) {
-    throw err;
-  }
-})();
+module.exports = app;
