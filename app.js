@@ -2,6 +2,8 @@ const express = require('express');
 const createError = require('http-errors');
 const { errors } = require('celebrate');
 const logger = require('morgan');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/swagger.json');
 const blogPostRouter = require('./features/blogpost/blogpost.router');
 
 const app = express();
@@ -9,6 +11,9 @@ app.disable('x-powered-by');
 
 app.use(logger('dev'));
 app.use(express.json());
+
+// Route to swagger api docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/blogposts', blogPostRouter);
 
 app.use(function(req, res, next) {

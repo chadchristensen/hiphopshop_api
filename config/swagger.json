@@ -1,0 +1,53 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "paths": {
+    "/blogposts": {
+      "get": {
+        "tags": ["Blog Posts"],
+        "summary": "Get all blog posts",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "content": {
+          "application/json": {}
+        },
+        "parameters": []
+      },
+      "post": {
+        "tags": ["Blog Posts"],
+        "summary": "Create a new blog post",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/blogposts/{blogPostId}": {
+      "get": {
+        "tags": ["Blog Posts"],
+        "summary": "Get a blog post by id"
+      },
+      "put": {
+        "tags": ["Blog Posts"],
+        "summary": "Update a blog post by id"
+      },
+      "delete": {
+        "tags": ["Blog Posts"],
+        "summary": "Delete a blog post by id"
+      }
+    }
+  }
+}
