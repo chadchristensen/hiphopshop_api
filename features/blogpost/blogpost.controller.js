@@ -39,10 +39,15 @@ blogPostRouter.get(
 blogPostRouter.put(
   '/:postId',
   asyncHandler(async (req, res) => {
-    const updatedBlogPost = await blogPostService.updateBlogPost(
-      req.params.postId,
+    const { postId } = req.params;
+    const [wasUpdated, updatedBlogPost] = await blogPostService.updateBlogPost(
+      postId,
       req.body
     );
+
+    if (!wasUpdated) {
+      throw createError.NotFound(`No blog post found with the id of ${postId}`);
+    }
 
     res.json(updatedBlogPost);
   })

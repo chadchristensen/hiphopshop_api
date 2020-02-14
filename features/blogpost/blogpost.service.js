@@ -18,6 +18,7 @@ function updateBlogPost(blogPostId, updatedBlogPost) {
     where: {
       id: blogPostId,
     },
+    returning: true,
   });
 }
 
