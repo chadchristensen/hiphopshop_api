@@ -1,12 +1,14 @@
 const express = require('express');
 const createError = require('http-errors');
-const { postRouter } = require('./controllers/postController.js');
+const {
+  blogPostRouter,
+} = require('./features/blogpost/blogpost.controller.js');
 
 const app = express();
 app.disable('x-powered-by');
 
 app.use(express.json());
-app.use('/api/v1/posts', postRouter);
+app.use('/api/v1/blogposts', blogPostRouter);
 
 app.use(function(req, res, next) {
   next(createError.NotFound(`${req.path} route does not exist`));
