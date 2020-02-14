@@ -1,11 +1,13 @@
 const express = require('express');
 const createError = require('http-errors');
 const { errors } = require('celebrate');
+const logger = require('morgan');
 const blogPostRouter = require('./features/blogpost/blogpost.router');
 
 const app = express();
 app.disable('x-powered-by');
 
+app.use(logger('dev'));
 app.use(express.json());
 app.use('/api/v1/blogposts', blogPostRouter);
 
