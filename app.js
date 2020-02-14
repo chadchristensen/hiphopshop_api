@@ -1,5 +1,6 @@
 const express = require('express');
 const createError = require('http-errors');
+const { errors } = require('celebrate');
 const blogPostRouter = require('./features/blogpost/blogpost.router');
 
 const app = express();
@@ -11,6 +12,8 @@ app.use('/api/v1/blogposts', blogPostRouter);
 app.use(function(req, res, next) {
   next(createError.NotFound(`${req.path} route does not exist`));
 });
+
+app.use(errors());
 
 if (process.env.NODE_ENV === 'production') {
   // Do not send stack trace of error message when in production
