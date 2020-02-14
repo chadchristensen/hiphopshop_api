@@ -1,8 +1,6 @@
 const express = require('express');
 const createError = require('http-errors');
-const {
-  blogPostRouter,
-} = require('./features/blogpost/blogpost.controller.js');
+const blogPostRouter = require('./features/blogpost/blogpost.router');
 
 const app = express();
 app.disable('x-powered-by');
